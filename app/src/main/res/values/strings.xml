@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Basic-master</string>
+
+    <string name="confirm">確定</string>
+    <string name="module_one">Module 1</string>
+    <string name="module_two">Module 2</string>
+    <string name="module_three">Module 3</string>
+    <string name="module_four">Module 4</string>
+</resources>

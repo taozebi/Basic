@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="bottom|right"
+    android:orientation="vertical">
+
+    <!-- <Button -->
+    <!-- android:id="@+id/satellites_btn" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_marginBottom="10dp" -->
+    <!-- android:background="@drawable/satellites_button_style" /> -->
+
+    <Button
+        android:id="@+id/GPSBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/map_gps_button_style"
+        android:minHeight="0dp"
+        android:minWidth="0dp" />
+
+    <Button
+        android:id="@+id/mapInitialExtentBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/map_full_button_style"
+        android:minHeight="0dp"
+        android:minWidth="0dp" />
+
+    <Button
+        android:id="@+id/mapZoomInBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/map_zoom_in_button_style"
+        android:minHeight="0dp"
+        android:minWidth="0dp" />
+
+    <Button
+        android:id="@+id/mapZoomOutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/map_zoom_out_button_style"
+        android:minHeight="0dp"
+        android:minWidth="0dp" />
+
+</LinearLayout>

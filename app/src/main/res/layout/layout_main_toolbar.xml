@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/titleBarBackground"
+    android:layout_alignParentBottom="true"
+   >
+
+    <Button
+        android:id="@+id/mModuleOneBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:textSize="@dimen/toolBarTextSize"
+        android:drawableTop="@drawable/icon_module_one_style"
+        android:text="@string/module_one"
+        android:textColor="@drawable/icon_module_one_style"  />
+
+    <Button
+        android:id="@+id/mModuleTwoBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:textSize="@dimen/toolBarTextSize"
+        android:drawableTop="@drawable/icon_module_two_style"
+        android:text="@string/module_two"
+        android:textColor="@drawable/icon_module_two_style"  />
+
+    <Button
+        android:id="@+id/mModuleThreeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:textSize="@dimen/toolBarTextSize"
+        android:drawableTop="@drawable/icon_module_three_style"
+        android:text="@string/module_three"
+        android:textColor="@drawable/icon_module_three_style"  />
+
+    <Button
+        android:id="@+id/mModuleFourBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:textSize="@dimen/toolBarTextSize"
+        android:drawableTop="@drawable/icon_module_four_style"
+        android:text="@string/module_four"
+        android:textColor="@drawable/icon_module_four_style"  />
+</LinearLayout>

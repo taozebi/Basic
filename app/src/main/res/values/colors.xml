@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
+    <color name="greenDark">#9CDC6A</color>
+    <color name="blue">#33B5E5</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#ABADB3</color>
+    <color name="grayWhite">#ebebeb</color>
+    <color name="grayLight">#887c7c7c</color>
+    <color name="grayDark">#5E5E5E</color>
+    <color name="yellow">#FFFC00</color>
+    <color name="pink">#FF87EF</color>
+    <color name="orange">#ff6200</color>
+    <color name="listDivider">#D3D3D3</color>
+    <color name="transparent">#00000000</color>
+    <color name="dividerLine">#d4d4d4</color>
+
+    <color name="titleBarBackground">#5787b7</color>
+    <color name="buttonTextPress">#0C4973</color>
+    <color name="buttonTextNormal">#ffffff</color>
+    <color name="moduleTitleBackground">#007AC2</color>
+    <color name="buttonNormal">#51A1E6</color>
+    <color name="textColor">#4b4b4b</color>
+    <color name="textColorHint">#887c7c7c</color>
+    <color name="bottomBarButtonNormal">#ffffff</color>
+    <color name="bottomBarButtonPress">#EDEDED</color>
+    <color name="bottomBarButtonDisabled">#CECCCC</color>
+    <color name="settingBackground">#EFEFF4</color>
+    <color name="settingLine">#C8C7CC</color>
+
+    <color name="slidingTextColor">@color/black</color>
+    <color name="slidingLineColor">@color/gray</color>
+
+    <color name="toolBarTextClick_P">#8a8a8a</color>
+
+</resources>

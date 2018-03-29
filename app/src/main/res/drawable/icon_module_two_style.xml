@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:color="@color/red" android:drawable="@drawable/icon_module_two_n" android:state_pressed="false" />
+    <item android:color="@color/toolBarTextClick_P" android:drawable="@drawable/icon_module_p" android:state_pressed="true" />
+
+</selector>
