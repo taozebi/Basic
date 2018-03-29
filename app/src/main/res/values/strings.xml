@@ -2,8 +2,14 @@
     <string name="app_name">Basic-master</string>
 
     <string name="confirm">確定</string>
-    <string name="module_one">Module 1</string>
-    <string name="module_two">Module 2</string>
-    <string name="module_three">Module 3</string>
-    <string name="module_four">Module 4</string>
+    <string name="one">one</string>
+    <string name="two">two</string>
+    <string name="three">three</string>
+    <string name="four">four</string>
+
+    <string name="message">消息</string>
+    <string name="picture_share">图片分享</string>
+    <string name="message_list">消息列表</string>
+    <string name="msg_tip">消息提示</string>
+    <string name="error_tip">错误提示</string>
 </resources>

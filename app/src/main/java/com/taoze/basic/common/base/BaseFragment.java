@@ -17,6 +17,7 @@ import com.ewide.core.util.T;
 import com.taoze.basic.common.view.TitleBar;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
 	
@@ -33,6 +34,8 @@ public abstract class BaseFragment extends Fragment {
 	private boolean invlidate = false;
 
 	private Bundle backBundle;
+
+	private Unbinder unbinder;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,7 +71,7 @@ public abstract class BaseFragment extends Fragment {
 		View contentView = onCreateContentView(inflater,container,savedInstanceState);
 		baseLayout.addView(contentView,new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		rootView = baseLayout;
-		ButterKnife.bind(this,rootView);
+		unbinder = ButterKnife.bind(this,rootView);
 		refresh(true);
 		return rootView;
 	}
@@ -343,6 +346,7 @@ public abstract class BaseFragment extends Fragment {
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+		unbinder.unbind();
 		KKLog.d(getClass().getName()+" onDestroy");
 	}
 	

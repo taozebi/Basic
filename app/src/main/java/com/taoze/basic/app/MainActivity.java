@@ -23,6 +23,7 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.taoze.basic.R;
 import com.taoze.basic.app.module1.Module1Fragment;
+import com.taoze.basic.app.module2.Module2Fragment;
 import com.taoze.basic.common.base.BaseFragment;
 import com.taoze.basic.common.base.CommonActivity;
 import com.taoze.basic.common.base.FManager;
@@ -143,6 +144,7 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
                 break;
             case R.id.mModuleTwoBtn:
                 showShort(" Module two btn clicked;");
+                mFManager.replace(Module2Fragment.class,null);
                 break;
             case R.id.mModuleThreeBtn:
                 showShort(" Module three btn clicked;");

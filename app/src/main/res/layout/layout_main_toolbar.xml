@@ -15,8 +15,8 @@
         android:layout_weight="1"
         android:background="@null"
         android:textSize="@dimen/toolBarTextSize"
+        android:text="@string/one"
         android:drawableTop="@drawable/icon_module_one_style"
-        android:text="@string/module_one"
         android:textColor="@drawable/icon_module_one_style"  />
 
     <Button
@@ -27,8 +27,8 @@
         android:layout_weight="1"
         android:background="@null"
         android:textSize="@dimen/toolBarTextSize"
+        android:text="@string/two"
         android:drawableTop="@drawable/icon_module_two_style"
-        android:text="@string/module_two"
         android:textColor="@drawable/icon_module_two_style"  />
 
     <Button
@@ -39,8 +39,8 @@
         android:layout_weight="1"
         android:background="@null"
         android:textSize="@dimen/toolBarTextSize"
+        android:text="@string/three"
         android:drawableTop="@drawable/icon_module_three_style"
-        android:text="@string/module_three"
         android:textColor="@drawable/icon_module_three_style"  />
 
     <Button
@@ -52,6 +52,6 @@
         android:background="@null"
         android:textSize="@dimen/toolBarTextSize"
         android:drawableTop="@drawable/icon_module_four_style"
-        android:text="@string/module_four"
+        android:text="@string/four"
         android:textColor="@drawable/icon_module_four_style"  />
 </LinearLayout>
