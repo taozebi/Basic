@@ -5,9 +5,20 @@
 
     <dimen name="titleBarTextSize">18sp</dimen>
     <dimen name="titleBarButtonTextSize">16sp</dimen>
+    <dimen name="toolBarTextSize">14sp</dimen>
 
     <dimen name="titleBarPadding_V">2dp</dimen>
     <dimen name="titleBarPadding_H">0dp</dimen>
 
-    <dimen name="toolBarTextSize">14sp</dimen>
+    <dimen name="adapterItemHeight">50dp</dimen>
+    <dimen name="adapterItemPadding">2dp</dimen>
+    <dimen name="adapterItemMargin_H">10dp</dimen>
+    <dimen name="adapterItemMargin_V">10dp</dimen>
+    <dimen name="adapterTextMargin">10dp</dimen>
+    <dimen name="adapterTextSize">10sp</dimen>
+
+
+    <dimen name="textSizeLarge">16sp</dimen>
+    <dimen name="textSizeMiddle">14sp</dimen>
+    <dimen name="textSizeSmall">12sp</dimen>
 </resources>

@@ -220,6 +220,15 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
     }
 
     @Override
+    public void onBackPressed() {
+        if(mFManager.getCurrentFragment() != null){
+            mFManager.back();
+        }else {
+            ((DemoApplication)getApplication()).toExit(this);
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         mMapView.onResume();

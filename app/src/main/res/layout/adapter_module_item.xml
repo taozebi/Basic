@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/adapterItemHeight"
+    android:padding="@dimen/adapterItemPadding">
+    <ImageView
+        android:id="@+id/mChatPictureIv"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/adapterItemMargin_H"
+        android:scaleType="centerInside"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/mChatPictureIv"
+        android:layout_marginLeft="@dimen/adapterTextMargin">
+        <TextView
+            android:id="@+id/mChatNicknameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSizeMiddle"
+            android:gravity="left|center"/>
+        <TextView
+            android:id="@+id/mChatLastMsgTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSizeSmall"
+            android:layout_below="@id/mChatNicknameTv"
+            android:layout_alignParentBottom="true"
+            android:gravity="left|center"/>
+        <TextView
+            android:id="@+id/mChatLastTimeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSizeSmall"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/adapterTextMargin"
+            android:layout_alignBottom="@id/mChatNicknameTv"
+            android:gravity="right|center"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
