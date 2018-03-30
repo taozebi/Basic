@@ -65,6 +65,8 @@ public class MapNavigationWidget implements OnClickListener {
 				zoomOut();
 				break;
 			case R.id.GPSBtn:
+				LatLng latLng = new LatLng(mBaiduMap.getLocationData().latitude,mBaiduMap.getLocationData().longitude);
+				center(latLng);
 				T.showShort(mContext,"test gps button");
 				break;
 		}

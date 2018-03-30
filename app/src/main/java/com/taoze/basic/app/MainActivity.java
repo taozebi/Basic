@@ -120,7 +120,7 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
         mBaiduMap = mMapView.getMap();
         mBaiduMap.setMyLocationEnabled(true);
         mLocationClient = new LocationClient(this);
-        mLocationClient.registerLocationListener(myListener);
+        mLocationClient.registerNotifyLocationListener(myListener);
         LocationClientOption option = new LocationClientOption();
         option.setOpenGps(true); // 打开gps
         option.setCoorType("bd09ll"); // 设置坐标类型
@@ -253,6 +253,7 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
     @Override
     protected void onDestroy() {
         // 退出时销毁定位
+        mLocationClient.unRegisterLocationListener(myListener);
         mLocationClient.stop();
         // 关闭定位图层
         mBaiduMap.setMyLocationEnabled(false);

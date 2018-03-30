@@ -38,10 +38,8 @@ public abstract class BaseActivity extends FragmentActivity {
 			}
 			return;
 		}
-
 	}
 
-	@RestrictTo(LIBRARY_GROUP)
 	private void handleResult(Fragment frag, int requestCode, int resultCode, Intent data) {
 		frag.onActivityResult(requestCode & 0xffff, resultCode, data);
 		List<Fragment> frags = frag.getChildFragmentManager().getFragments();
@@ -85,6 +83,5 @@ public abstract class BaseActivity extends FragmentActivity {
 		//注册特殊监听
 		bindViewListener();
 	}
-	
 }
 
