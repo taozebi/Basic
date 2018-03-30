@@ -22,7 +22,6 @@ import com.taoze.basic.R;
  */
 public class MapNavigationWidget implements OnClickListener {
 	private Context mContext;
-	private MapView mMapView;
 	private BaiduMap mBaiduMap;
 
 	private Button initialExtentBtn,zoomInBtn,zoomOutBtn;
@@ -30,11 +29,8 @@ public class MapNavigationWidget implements OnClickListener {
 	private boolean isLocation = false;
 	private double count = 0;
 
-	private boolean isFirstLocation = true;
-
 	public MapNavigationWidget(Context context, MapView mapView, View uiView) {
 		this.mContext = context;
-		this.mMapView = mapView;
 		mBaiduMap = mapView.getMap();
 		createView(uiView);
 	}
