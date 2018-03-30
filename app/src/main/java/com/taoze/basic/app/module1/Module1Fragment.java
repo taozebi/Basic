@@ -179,4 +179,12 @@ public class Module1Fragment extends BaseFragment{
         bundle.putSerializable("info",(ChatInfo)mModuleAdapter.getItem(positon));
         getModuleManager().add(Module11Fragment.class,bundle);
     }
+
+    @Override
+    protected void onRefresh(Bundle bundle) {
+        super.onRefresh(bundle);
+        if(bundle != null && bundle.containsKey("tip")){
+            T.showShort(getActivity(),bundle.getString("tip"));
+        }
+    }
 }

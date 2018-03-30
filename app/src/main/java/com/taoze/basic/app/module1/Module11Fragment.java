@@ -11,6 +11,7 @@ import com.taoze.basic.app.bean.ChatInfo;
 import com.taoze.basic.common.base.BaseFragment;
 
 /**
+ * Module 1-1
  * Created by Taoze on 2018/3/28.
  */
 
@@ -31,11 +32,8 @@ public class Module11Fragment extends BaseFragment{
         if(bundle != null&&bundle.containsKey("info")){
             mInfo = (ChatInfo) bundle.get("info");
             T.showShort(getActivity(),"info: "+mInfo.toString());
+            bundle.putString("tip","This is Module1 1-1 's Bundle");
+            invlidateBackRefresh(bundle);
         }
-    }
-
-    @Override
-    protected boolean onBack() {
-        return super.onBack();
     }
 }
