@@ -5,8 +5,11 @@ import android.view.View;
 
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
+import com.taoze.basic.app.global.AppData;
+import com.taoze.basic.common.base.BaseActivity;
 import com.taoze.basic.common.base.BaseApplication;
 import com.taoze.basic.common.widget.AlertDialog;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,8 @@ import cn.finalteam.okhttpfinal.OkHttpFinalConfiguration;
  */
 
 public class DemoApplication extends BaseApplication {
+
+    public static final String TAG = "zebit";
 
     /**
      * 是否有地图，地图需初始化
@@ -38,13 +43,23 @@ public class DemoApplication extends BaseApplication {
         }
     }
 
+    public Activity getTopActivity(){
+        return activities.get(activities.size()-1);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
-        initializeOkHttp();
         if (hasMapView) {
             initializeMap();
         }
+
+        initializeBugly();
+        initializeOkHttp();
+    }
+
+    private void initializeBugly(){
+        CrashReport.initCrashReport(getApplicationContext(), AppData.BUGLY_APPID,false);
     }
 
     private void initializeOkHttp() {
