@@ -1,6 +1,7 @@
 package com.taoze.basic.common.base;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -61,8 +62,9 @@ public abstract class CommonActivity extends BaseActivity {
 			
 			@Override
 			public void onClick(View v) {
+				Log.d(DemoApplication.TAG, "CommonActivity back clicked");
 				if(!onBack()){
-					finish();
+					((DemoApplication) getApplication()).getTopActivity().finish();
 				}
 			}
 		});
@@ -92,7 +94,7 @@ public abstract class CommonActivity extends BaseActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		((BaseApplication)getApplication()).removeActivity(this);
+		((DemoApplication)getApplication()).removeActivity(this);
 	}
 
 	protected void onSubmit() {
@@ -104,6 +106,7 @@ public abstract class CommonActivity extends BaseActivity {
 	 * @return
 	 */
 	protected boolean onBack(){
+		Log.d(DemoApplication.TAG,"CommonActivity --> onBack()");
 		return false;
 	}
 

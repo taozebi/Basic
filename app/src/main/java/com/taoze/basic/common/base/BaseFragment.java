@@ -20,6 +20,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
+
+	private BaseFragment baseFragment;
 	
 	protected View rootView;
 	
@@ -75,6 +77,8 @@ public abstract class BaseFragment extends Fragment {
 		refresh(true);
 		return rootView;
 	}
+
+
 	
 	/**
 	 * 创建内容View
@@ -254,19 +258,56 @@ public abstract class BaseFragment extends Fragment {
 	public FManager getModuleManager() {
 		return moduleManager;
 	}
-	
-	private void mStartActivityForResult(Intent intent){
+
+	// Fragment startActivityForResult target 2.3.3 or before
+	/*private void mStartActivityForResult(Intent intent){
 		getActivity().startActivityForResult(intent, getModuleManager().getRequestCode());
-	}
+	}*/
 	
-	@Override
+	/*@Override
 	public void startActivityForResult(Intent intent, int requestCode) {
 		this.tempRequestCode = requestCode;
 		mStartActivityForResult(intent);
-	}
+	}*/
 	
-	public void activityResult(int resultCode, Intent data) {
+	/*public void activityResult(int resultCode, Intent data) {
 		onActivityResult(tempRequestCode, resultCode, data);
+	}*/
+
+	@Override
+	public void startActivityForResult(Intent intent, int requestCode) {
+		Fragment parentFragment = getParentFragment();
+		if (parentFragment != null && parentFragment instanceof BaseFragment) {
+			((BaseFragment) parentFragment).startActivityForResultFromChildFragment(intent, requestCode, this);
+		} else {
+			baseFragment = null;
+			super.startActivityForResult(intent, requestCode);
+		}
+	}
+
+	private void startActivityForResultFromChildFragment(Intent intent, int requestCode, BaseFragment childFragment) {
+		baseFragment = childFragment;
+
+		Fragment parentFragment = getParentFragment();
+		if (parentFragment != null && parentFragment instanceof BaseFragment) {
+			((BaseFragment) parentFragment).startActivityForResultFromChildFragment(intent, requestCode, this);
+		} else {
+			super.startActivityForResult(intent, requestCode);
+		}
+	}
+
+	@Override
+	public final void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (baseFragment != null) {
+			baseFragment.onActivityResult(requestCode, resultCode, data);
+			baseFragment = null;
+		} else {
+			onActivityResultNestedCompat(requestCode, resultCode, data);
+		}
+	}
+
+	public void onActivityResultNestedCompat(int requestCode, int resultCode, Intent data) {
+
 	}
 	
 	protected void addActionView(int resId){

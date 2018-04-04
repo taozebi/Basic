@@ -1,7 +1,6 @@
 package com.taoze.basic.common.base;
 
 import android.content.Intent;
-import android.support.annotation.RestrictTo;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -11,7 +10,6 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * BaseActivity
@@ -21,7 +19,7 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  */
 public abstract class BaseActivity extends FragmentActivity {
 
-	@Override
+/*	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		FragmentManager fm = getSupportFragmentManager();
 		int index = requestCode >> 16;
@@ -38,9 +36,9 @@ public abstract class BaseActivity extends FragmentActivity {
 			}
 			return;
 		}
-	}
+	}*/
 
-	private void handleResult(Fragment frag, int requestCode, int resultCode, Intent data) {
+/*	private void handleResult(Fragment frag, int requestCode, int resultCode, Intent data) {
 		frag.onActivityResult(requestCode & 0xffff, resultCode, data);
 		List<Fragment> frags = frag.getChildFragmentManager().getFragments();
 		if (frags != null) {
@@ -49,7 +47,7 @@ public abstract class BaseActivity extends FragmentActivity {
 					handleResult(f, requestCode, resultCode, data);
 			}
 		}
-	}
+	}*/
 	
 	/**
 	 * 描述：用指定资源ID表示的View填充主界面.可根据需要实现.

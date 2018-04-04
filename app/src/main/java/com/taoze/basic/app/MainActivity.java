@@ -1,10 +1,13 @@
 package com.taoze.basic.app;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -20,10 +23,14 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.offline.MKOfflineMap;
 import com.baidu.mapapi.model.LatLng;
+import com.ewide.core.util.T;
 import com.taoze.basic.R;
 import com.taoze.basic.app.module1.Module1Fragment;
 import com.taoze.basic.app.module2.Module2Fragment;
+import com.taoze.basic.app.module3.Module3Fragment;
+import com.taoze.basic.app.module4.OfflineMapActivity;
 import com.taoze.basic.common.base.BaseFragment;
 import com.taoze.basic.common.base.CommonActivity;
 import com.taoze.basic.common.base.FManager;
@@ -75,8 +82,27 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.e(DemoApplication.TAG,"MainActivity onCreate()");
         initData();
         setMapConfig();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.e(DemoApplication.TAG,"MainActivity onNewIntent()");
+        MapStatus.Builder builder = new MapStatus.Builder();
+        LatLng center = new LatLng(39.915071, 116.403907); // 默认 天安门
+        float zoom = 11.0f; // 默认 11级
+        if (null != intent) {
+            center = new LatLng(intent.getDoubleExtra("y", 30.594985),
+                    intent.getDoubleExtra("x", 114.318481));
+            zoom = intent.getFloatExtra("level", 11.0f);
+            Log.e(DemoApplication.TAG,"MainActivity onNewIntent() ---> x:"+center.latitude+" ,y: "+center.longitude +" ,zoom :"+zoom);
+        }else{
+            Log.e(DemoApplication.TAG,"MainActivity getIntent() is null");
+        }
+        builder.target(center).zoom(zoom);
     }
 
     private void initData(){
@@ -85,7 +111,7 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
         View uiView = findViewById(R.id.mapNavigationWidget);
         mMapNavigationWidget = new MapNavigationWidget(this, mMapView, uiView);
 
-        titleBar.setTitleText(R.string.app_name);
+//        titleBar.setTitleText(R.string.app_name);
         titleBar.setVisibility(View.GONE);
 
         mFManager = new FManager(R.id.layout_content,this,200);
@@ -113,44 +139,50 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
     }
 
     private void setMapConfig(){
+
         mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
 
         //隐藏放大缩小按钮
         mMapView.showZoomControls(false);
         mBaiduMap = mMapView.getMap();
+        mBaiduMap.setMyLocationConfiguration(new MyLocationConfiguration(
+                mCurrentMode, true, mCurrentMarker));
         mBaiduMap.setMyLocationEnabled(true);
+
         mLocationClient = new LocationClient(this);
-        mLocationClient.registerNotifyLocationListener(myListener);
+        mLocationClient.registerLocationListener(myListener);
         LocationClientOption option = new LocationClientOption();
         option.setOpenGps(true); // 打开gps
         option.setCoorType("bd09ll"); // 设置坐标类型
-        option.setScanSpan(1000);
+        option.setScanSpan(3*10000);
         mLocationClient.setLocOption(option);
         mLocationClient.start();
 
-        mBaiduMap.setMyLocationConfiguration(new MyLocationConfiguration(
-                mCurrentMode, true, mCurrentMarker));
         MapStatus.Builder builder = new MapStatus.Builder();
+//        LatLng center = new LatLng(30.594985, 114.318481);  // 默认武汉114.318481,30.594985
+        LatLng center = new LatLng(39.915071, 116.403907); // 默认 天安门
+        float zoom = 5.0f; // 默认 11级
+        builder.target(center).zoom(zoom);
         builder.overlook(0);
         mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+
     }
 
     @OnClick({R.id.mModuleOneBtn,R.id.mModuleTwoBtn,R.id.mModuleThreeBtn,R.id.mModuleFourBtn})
     public void onBtnClick(View view){
         switch (view.getId()){
             case R.id.mModuleOneBtn:
-                showShort(" Module one btn clicked;");
                 mFManager.replace(Module1Fragment.class,null);
                 break;
             case R.id.mModuleTwoBtn:
-                showShort(" Module two btn clicked;");
                 mFManager.replace(Module2Fragment.class,null);
                 break;
             case R.id.mModuleThreeBtn:
-                showShort(" Module three btn clicked;");
+                mFManager.replace(Module3Fragment.class,null);
                 break;
             case R.id.mModuleFourBtn:
-                showShort(" Module four btn clicked;");
+                Intent intent = new Intent(MainActivity.this, OfflineMapActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -187,21 +219,32 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
             if (bdLocation == null || mMapView == null) {
                 return;
             }
-            mCurrentLat = bdLocation.getLatitude();
-            mCurrentLon = bdLocation.getLongitude();
-            mCurrentAccracy = bdLocation.getRadius();
+            double lat = bdLocation.getLatitude();
+            double lng = bdLocation.getLongitude();
+            if (4.9E-324 == lat || 4.9E-324 == lng) {
+                T.showShort(MainActivity.this,"定位失败，请查看手机是否开启了定位权限");
+                //定位失败 默认定位到武汉
+                mCurrentLat = 30.594985;
+                mCurrentLon = 114.318481;
+                mCurrentAccracy = 50;
+            }else{
+                mCurrentLat = bdLocation.getLatitude();
+                mCurrentLon = bdLocation.getLongitude();
+                mCurrentAccracy = bdLocation.getRadius();
+            }
+
             locData = new MyLocationData.Builder()
-                    .accuracy(bdLocation.getRadius())
+                    .accuracy(mCurrentAccracy)
                     // 此处设置开发者获取到的方向信息，顺时针0-360
-                    .direction(mCurrentDirection).latitude(bdLocation.getLatitude())
-                    .longitude(bdLocation.getLongitude()).build();
+                    .direction(mCurrentDirection).latitude(mCurrentLat)
+                    .longitude(mCurrentLon).build();
             mBaiduMap.setMyLocationData(locData);
             if (isFirstLoc) {
                 isFirstLoc = false;
-                LatLng ll = new LatLng(bdLocation.getLatitude(),
-                        bdLocation.getLongitude());
+                LatLng center = new LatLng(mCurrentLat,
+                        mCurrentLon);
                 MapStatus.Builder builder = new MapStatus.Builder();
-                builder.target(ll).zoom(18.0f);
+                builder.target(center).zoom(5.0f);
                 mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
             }
         }
@@ -217,6 +260,12 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
         if(mToolBar.getVisibility() != View.INVISIBLE){
             mToolBar.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(DemoApplication.TAG,"MainActivity requestCode: "+requestCode+"  ,resultCode: "+resultCode);
     }
 
     @Override

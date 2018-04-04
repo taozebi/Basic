@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingLeft="0dp"
+    android:paddingTop="2dp"
+    android:paddingRight="0dp"
+    android:paddingBottom="2dp"
+    android:background="@color/titleBarBackground">
+
+    <Button
+        android:id="@+id/titleBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_back_style"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:minWidth="0dp"/>
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        />
+    <Button
+        android:id="@+id/titleSubmitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/transparent"
+        android:textColor="@drawable/button_submit_style"
+        android:textSize="16sp"
+        android:minWidth="0dp"
+        />
+</RelativeLayout>
