@@ -48,4 +48,9 @@ public class BaseMapActivity extends CommonActivity{
         super.onDestroy();
         mMapView.onDestroy();
     }
+
+    @Override
+    public void onInitData() {
+
+    }
 }

@@ -334,14 +334,6 @@ public abstract class BaseFragment extends Fragment {
 		}
 		return null;
 	}
-	
-	protected void showShort(String message){
-		T.showShort(getActivity(), message);
-	}
-	
-	protected void showLong(String message){
-		T.showLong(getActivity(), message);
-	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {

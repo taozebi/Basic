@@ -250,6 +250,11 @@ public class OfflineMapActivity extends CommonActivity implements MKOfflineMapLi
     }
 
     @Override
+    public void onInitData() {
+
+    }
+
+    @Override
     public void onGetOfflineMapState(int type, int state) {
         switch (type) {
             case MKOfflineMap.TYPE_DOWNLOAD_UPDATE: {
@@ -338,10 +343,11 @@ public class OfflineMapActivity extends CommonActivity implements MKOfflineMapLi
                     intent.putExtra("customStyle", true);
                     intent.putExtra("x", e.geoPt.longitude);
                     intent.putExtra("y", e.geoPt.latitude);
-                    intent.putExtra("level", 13.0f);
+                    intent.putExtra("level", 8.0f);
                     intent.setClass(OfflineMapActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    Log.d(DemoApplication.TAG,"OfflineMapActivity ---> "+"display: "+"x, "+e.geoPt.longitude+" ; y, "+e.geoPt.latitude+" ; level, "+13.0f);
+                    Log.d(DemoApplication.TAG,"OfflineMapActivity ---> "+"display: "+"x, "+e.geoPt.longitude+" ; y, "+e.geoPt.latitude+" ; level, "+8.0f);
                 }
             });
         }

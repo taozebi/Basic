@@ -120,6 +120,7 @@ public abstract class CommonActivity extends BaseActivity {
 		contentLayout.addView(contentView,new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		//注解控件
 		ButterKnife.bind(this);
+		onInitData();
 	}
 	
 	/**
@@ -154,13 +155,10 @@ public abstract class CommonActivity extends BaseActivity {
 	}
 
 	public void showContent(Class<? extends BaseFragment> clazz){}
-	
-	protected void showShort(String message){
-		T.showShort(this, message);
-	}
-	
-	protected void showLong(String message){
-		T.showLong(this, message);
-	}
+
+	/**
+	 * 初始化数据
+	 */
+	public abstract void onInitData();
 }
 

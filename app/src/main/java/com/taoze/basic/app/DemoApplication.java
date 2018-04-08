@@ -1,6 +1,7 @@
 package com.taoze.basic.app;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 
 import com.baidu.mapapi.CoordType;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import cn.finalteam.okhttpfinal.OkHttpFinal;
 import cn.finalteam.okhttpfinal.OkHttpFinalConfiguration;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 示例Application
@@ -53,21 +55,30 @@ public class DemoApplication extends BaseApplication {
         if (hasMapView) {
             initializeMap();
         }
-
+        initializeJPush();
         initializeBugly();
         initializeOkHttp();
     }
 
+    private void initializeJPush(){
+        Log.d(TAG,"init Jpsh");
+        JPushInterface.setDebugMode(true);//测试版为true
+        JPushInterface.init(this);
+    }
+
     private void initializeBugly(){
+        Log.d(TAG,"init Bugly");
         CrashReport.initCrashReport(getApplicationContext(), AppData.BUGLY_APPID,false);
     }
 
     private void initializeOkHttp() {
+        Log.d(TAG,"init OKHttp");
         OkHttpFinalConfiguration.Builder builder = new OkHttpFinalConfiguration.Builder();
         OkHttpFinal.getInstance().init(builder.build());
     }
 
     private void initializeMap() {
+        Log.d(TAG,"init BaiduMap");
         // 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext
         SDKInitializer.initialize(getApplicationContext());
         //自4.3.0起，百度地图SDK所有接口均支持百度坐标和国测局坐标，用此方法设置您使用的坐标类型.

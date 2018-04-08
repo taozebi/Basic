@@ -25,19 +25,23 @@ import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.offline.MKOfflineMap;
 import com.baidu.mapapi.model.LatLng;
+import com.ewide.core.util.NetworkUtils;
 import com.ewide.core.util.T;
 import com.taoze.basic.R;
 import com.taoze.basic.app.module1.Module1Fragment;
 import com.taoze.basic.app.module2.Module2Fragment;
+import com.taoze.basic.app.module3.BlogActivity;
 import com.taoze.basic.app.module3.Module3Fragment;
 import com.taoze.basic.app.module4.OfflineMapActivity;
 import com.taoze.basic.common.base.BaseFragment;
 import com.taoze.basic.common.base.CommonActivity;
 import com.taoze.basic.common.base.FManager;
+import com.taoze.basic.common.widget.AlertDialog;
 import com.taoze.basic.common.widget.MapNavigationWidget;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends CommonActivity implements SensorEventListener {
 
@@ -78,6 +82,8 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
 
     private MapNavigationWidget mMapNavigationWidget;
 
+    private boolean isExit = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,8 +99,9 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
         Log.e(DemoApplication.TAG,"MainActivity onNewIntent()");
         MapStatus.Builder builder = new MapStatus.Builder();
         LatLng center = new LatLng(39.915071, 116.403907); // 默认 天安门
-        float zoom = 11.0f; // 默认 11级
+        float zoom = 5.0f; // 默认 11级
         if (null != intent) {
+            isExit = true;
             center = new LatLng(intent.getDoubleExtra("y", 30.594985),
                     intent.getDoubleExtra("x", 114.318481));
             zoom = intent.getFloatExtra("level", 11.0f);
@@ -103,6 +110,12 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
             Log.e(DemoApplication.TAG,"MainActivity getIntent() is null");
         }
         builder.target(center).zoom(zoom);
+        mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+
+        if(JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())){
+            String msg = "JPush message";
+            showJPushDialog(msg);
+        }
     }
 
     private void initData(){
@@ -178,11 +191,13 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
                 mFManager.replace(Module2Fragment.class,null);
                 break;
             case R.id.mModuleThreeBtn:
-                mFManager.replace(Module3Fragment.class,null);
+//                mFManager.replace(Module3Fragment.class,null);
+                Intent blog = new Intent(MainActivity.this, BlogActivity.class);
+                startActivity(blog);
                 break;
             case R.id.mModuleFourBtn:
-                Intent intent = new Intent(MainActivity.this, OfflineMapActivity.class);
-                startActivity(intent);
+                Intent offline = new Intent(MainActivity.this, OfflineMapActivity.class);
+                startActivity(offline);
                 break;
         }
     }
@@ -201,6 +216,21 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
         }
         lastX = x;
 
+    }
+
+    private void showJPushDialog(String msg){
+
+            new AlertDialog(MainActivity.this)
+                    .builder()
+                    .setTitle("提示信息")
+                    .setMsg(msg)
+                    .setPositiveButton("确定", new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    }).show();
     }
 
     @Override
@@ -272,7 +302,9 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
     public void onBackPressed() {
         if(mFManager.getCurrentFragment() != null){
             mFManager.back();
-        }else {
+        }else if(isExit){
+            finish();
+        }else{
             ((DemoApplication)getApplication()).toExit(this);
         }
     }
@@ -309,5 +341,10 @@ public class MainActivity extends CommonActivity implements SensorEventListener 
         mMapView.onDestroy();
         mMapView = null;
         super.onDestroy();
+    }
+
+    @Override
+    public void onInitData() {
+
     }
 }
