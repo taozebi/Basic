@@ -156,7 +156,7 @@
 
         <!-- Required SDK核心功能-->
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
-        <!--极光推送 end-->
+        <!--极光推送  end-->
     </application>
 
 </manifest>
