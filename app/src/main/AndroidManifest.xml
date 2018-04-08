@@ -71,7 +71,7 @@
         </service>
         <!--百度定位服务 end-->
 
-        <!--激光推送 start-->
+        <!--极光推送 start-->
         <meta-data
             android:name="JPUSH_APPKEY"
             android:value="ff2d6ccaf9122adf8c2df6ee"/>
@@ -156,7 +156,7 @@
 
         <!-- Required SDK核心功能-->
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
-        <!--激光推送 end-->
+        <!--极光推送 end-->
     </application>
 
 </manifest>
