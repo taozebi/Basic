@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/reset"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/reset" />
+    <item
+        android:id="@+id/addLne"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/add_line" />
+    <item
+        android:id="@+id/showOrHideNode"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/show_hide_node" />
+    <item
+        android:id="@+id/showOrHideNodeTarget"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/show_hide_node_target" />
+    <item
+        android:id="@+id/curveOrBrokenLine"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/curve_broken_line" />
+    <item
+        android:id="@+id/fullAreaColor"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/full_area_color" />
+    <item
+        android:id="@+id/switchAnima"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/switch_anima" />
+    <item
+        android:id="@+id/clickNodeShowTarget"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/click_node_show_target" />
+    <item
+        android:id="@+id/dynamicDataDisplay"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/dynamic_data_display" />
+</menu>

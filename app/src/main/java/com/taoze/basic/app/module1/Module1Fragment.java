@@ -1,12 +1,10 @@
 package com.taoze.basic.app.module1;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.ewide.core.util.T;
 import com.taoze.basic.R;
@@ -175,9 +173,16 @@ public class Module1Fragment extends BaseFragment{
     @OnItemClick(R.id.mChatLv)
     public void OnItemClick(int positon){
         T.showShort(getActivity(),"Click "+(positon+1));
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("info",(ChatInfo)mModuleAdapter.getItem(positon));
-        getModuleManager().add(Module11Fragment.class,bundle);
+        int num = positon % 3;
+        if (num == 0){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("info",(ChatInfo)mModuleAdapter.getItem(positon));
+            getModuleManager().add(LineChartFragment.class,bundle);
+        }else if(num == 1){
+            getModuleManager().add(ColumnChartFragment.class,null);
+        }else {
+            getModuleManager().add(PieChartFragment.class,null);
+        }
     }
 
     @Override

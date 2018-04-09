@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.taoze.basic"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -51,5 +51,6 @@ dependencies {
     compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
     compile 'cn.jiguang.sdk:jpush:3.1.1'  // 此处以JPush 3.1.1 版本为例。
     compile 'cn.jiguang.sdk:jcore:1.1.9'  // 此处以JCore 1.1.9 版本为例。
+    compile 'com.github.lecho:hellocharts-library:1.5.8@aar' //集成HelloCharts 图标库
     compile files('libs/core.jar')
 }

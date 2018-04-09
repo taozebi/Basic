@@ -12,4 +12,15 @@
     <string name="message_list">消息列表</string>
     <string name="msg_tip">消息提示</string>
     <string name="error_tip">错误提示</string>
+
+    <string name="reset">重置</string>
+    <string name="add_line">添加线条</string>
+    <string name="show_hide_node">显示/隐藏节点</string>
+    <string name="show_hide_node_target">显示/隐藏节点标签</string>
+    <string name="curve_broken_line">曲线/折线</string>
+    <string name="full_area_color">填充下方区域颜色</string>
+    <string name="switch_anima">切换动画</string>
+    <string name="click_node_show_target">点击节点显示标签</string>
+    <string name="dynamic_data_display">动态数据显示</string>
+    
 </resources>

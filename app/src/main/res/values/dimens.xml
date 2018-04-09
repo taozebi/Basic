@@ -21,4 +21,7 @@
     <dimen name="textSizeLarge">16sp</dimen>
     <dimen name="textSizeMiddle">14sp</dimen>
     <dimen name="textSizeSmall">12sp</dimen>
+
+    <dimen name="pie_chart_single_text_size">42sp</dimen>
+    <dimen name="pie_chart_double_text_size">16dp</dimen>
 </resources>

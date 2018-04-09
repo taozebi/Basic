@@ -4,9 +4,11 @@
     android:background="@color/white"
     android:clickable="true"
     android:layout_height="match_parent">
-    <ImageView
+    <lecho.lib.hellocharts.view.LineChartView
+        android:id="@+id/mLineChartView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="this is the second fragment"
-        />
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:transitionName="line" />
 </LinearLayout>
