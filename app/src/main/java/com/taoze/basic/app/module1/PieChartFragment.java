@@ -112,7 +112,7 @@ public class PieChartFragment extends BaseFragment {
 
         //是否分离
         if (isExploded) {
-            mPieChartData.setSlicesSpacing(18);                 //分离间距为18
+            mPieChartData.setSlicesSpacing(10);                 //分离间距为18
         }
 
         //是否显示单行文本
