@@ -14,6 +14,7 @@ import android.widget.LinearLayout.LayoutParams;
 
 import com.ewide.core.util.KKLog;
 import com.ewide.core.util.T;
+import com.taoze.basic.common.util.ProgressDialogUtil;
 import com.taoze.basic.common.view.TitleBar;
 
 import butterknife.ButterKnife;
@@ -401,5 +402,17 @@ public abstract class BaseFragment extends Fragment {
 	public void onStop() {
 		super.onStop();
 		KKLog.d(getClass().getName()+" onStop");
+	}
+
+	public void showProgressDialog(String title, String msg){
+		ProgressDialogUtil.show(getActivity(),title,msg);
+	}
+
+	public void showProgressDialog(String title, String msg, ProgressDialogUtil.OnCancelListener onCancelListener){
+		ProgressDialogUtil.show(getActivity(),title,msg, onCancelListener);
+	}
+
+	public void dismissProgressDialog(){
+		ProgressDialogUtil.dismiss();
 	}
 }
