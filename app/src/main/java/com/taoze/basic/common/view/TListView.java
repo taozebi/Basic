@@ -1,15 +1,14 @@
 package com.taoze.basic.common.view;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.widget.ListView;
 
 /**
- * 自定义ListView 使其在ScrollView中可以滑动显示多条数据
- * Created by Taoze on 2018/4/12.
+ * 在ScrollView中可以使ScrollView滑动的ListView
+ * Created by Taoze on 2018/4/23.
  */
 
 public class TListView extends ListView {
@@ -25,24 +24,14 @@ public class TListView extends ListView {
         super(context, attrs, defStyleAttr);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public TListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
-
-
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_MOVE:
-                getParent().requestDisallowInterceptTouchEvent(true);
-                break;
-            case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_CANCEL:
-                getParent().requestDisallowInterceptTouchEvent(false);
-                break;
-        }
-        return super.dispatchTouchEvent(ev);
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE>>2, // 设计一个较大的值和AT_MOST模式
+                MeasureSpec.AT_MOST);
+        super.onMeasure(widthMeasureSpec, newHeightMeasureSpec);//再调用原方法测量
     }
 }
