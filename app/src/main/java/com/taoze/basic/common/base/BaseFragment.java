@@ -3,6 +3,8 @@ package com.taoze.basic.common.base;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -39,6 +41,13 @@ public abstract class BaseFragment extends Fragment {
 	private Bundle backBundle;
 
 	private Unbinder unbinder;
+	private Handler mUiHandler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			onHandleMessage(msg);
+		}
+	};
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,7 +88,34 @@ public abstract class BaseFragment extends Fragment {
 		return rootView;
 	}
 
+	/**
+	 * 子类重写handleMessage
+	 * @param msg
+	 */
+	protected void onHandleMessage(Message msg){
 
+	}
+
+	protected void sendMessage(int what, Object obj){
+		Message msg = mUiHandler.obtainMessage();
+		msg.what = what;
+		msg.obj = obj;
+		mUiHandler.sendMessage(msg);
+	}
+
+	protected void sendMessage(int what){
+		mUiHandler.sendEmptyMessage(what);
+	}
+
+	protected void sendMessageDelayed(int what, long delayMillis){
+		mUiHandler.sendEmptyMessageDelayed(what,delayMillis);
+	}
+	protected void sendMessageDelayed(int what, Object obj, long delayMillis){
+		Message msg = mUiHandler.obtainMessage();
+		msg.what = what;
+		msg.obj = obj;
+		mUiHandler.sendMessageDelayed(msg,delayMillis);
+	}
 	
 	/**
 	 * 创建内容View
