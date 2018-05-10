@@ -11,6 +11,7 @@ import com.taoze.basic.R;
 import com.taoze.basic.app.adapter.ModuleAdapter;
 import com.taoze.basic.app.bean.ChatInfo;
 import com.taoze.basic.common.base.BaseFragment;
+import com.taoze.basic.common.listener.PtrListViewOnScrollListener;
 import com.taoze.basic.common.view.PtrClassFrameLayout;
 
 import java.util.ArrayList;
@@ -38,12 +39,20 @@ public class Module1Fragment extends BaseFragment{
 
     private List<ChatInfo> chatInfos;
     private ModuleAdapter mModuleAdapter;
+    private PtrListViewOnScrollListener scrollListener;
 
     private int count = 0;
 
     @Override
     protected View onCreateContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_module1,null);
+    }
+
+    @Override
+    protected void onBindView(View contentView) {
+        super.onBindView(contentView);
+        scrollListener = new PtrListViewOnScrollListener(mPtrCFrameLayout,true,true);
+        mChatLv.setOnScrollListener(scrollListener);
     }
 
     @Override
