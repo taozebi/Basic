@@ -41,6 +41,8 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:support-core-ui:25+'
+    compile 'com.android.support:design:25+'
     compile 'com.android.support:appcompat-v7:25+'
     compile 'cn.finalteam:okhttpfinal:2.0.7'
     compile 'in.srain.cube:ptr-load-more:1.0.6'
@@ -51,6 +53,6 @@ dependencies {
     compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
     compile 'cn.jiguang.sdk:jpush:3.1.1'  // 此处以JPush 3.1.1 版本为例。
     compile 'cn.jiguang.sdk:jcore:1.1.9'  // 此处以JCore 1.1.9 版本为例。
-    compile 'com.github.lecho:hellocharts-library:1.5.8@aar' //集成HelloCharts 图标库
+    compile 'com.github.lecho:hellocharts-library:1.5.8@aar' //集成HelloCharts 图表库
     compile files('libs/core.jar')
 }
